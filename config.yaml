@@ -1,0 +1,43 @@
+# Jarvis Voice Assistant Configuration - Windows
+
+Audio:
+  sample_rate: 16000
+  chunk_size: 1024
+  device_index: 0  # Default microphone
+
+WakeWord:
+  enabled: true
+  phrase: "jarvis"  # Wake word to trigger listening
+  sensitivity: 0.5  # 0.0-1.0, higher = more sensitive
+  timeout: 30  # seconds
+
+STT:
+  engine: "faster-whisper"  # Options: google, faster-whisper, openai
+  model_size: "base"  # Options: tiny, base, small, medium, large
+  language: "en"
+  timeout: 10
+
+LLM:
+  engine: "ollama"  # Options: ollama, openai, huggingface
+  model: "mistral"  # Local model name for Ollama
+  base_url: "http://localhost:11434/api/generate"
+  timeout: 30
+  temperature: 0.7
+
+TTS:
+  engine: "pyttsx3"  # Options: pyttsx3, piper, windows-tts
+  voice: "default"
+  rate: 150  # words per minute
+  volume: 1.0  # 0.0-1.0
+
+ListeningMode:
+  type: "push-to-talk"  # Options: always-on, push-to-talk, wake-word
+  push_to_talk_key: "ctrl+shift+j"  # Global hotkey for push-to-talk
+
+Commands:
+  enabled: true
+  timeout: 5
+
+Logging:
+  level: "INFO"
+  file: "logs/jarvis.log"
